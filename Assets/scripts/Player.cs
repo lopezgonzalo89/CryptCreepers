@@ -5,14 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
   [SerializeField] int heroHealth = 5;
-  [SerializeField] Vector3 moveDirection;
   [SerializeField] float moveSpeed = 4;
+  [SerializeField] float fireRate = 3;
+  [SerializeField] Vector3 moveDirection;
   [SerializeField] Transform aim;
   [SerializeField] Camera camera;
-  Vector2 facingDirection;
   [SerializeField] Transform bulletPrefab;
+  Vector2 facingDirection;
   bool gunLoaded = true;
-  [SerializeField] float fireRate = 3;
 
   // Start is called before the first frame update
   void Start()
@@ -41,15 +41,15 @@ public class Player : MonoBehaviour
     }
 
     if (heroHealth == 0) {
-      Destroy(gameObject);
+      // Game Over
     }
   }
 
   private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("Enemy")) {
-          heroHealth--;
-        }
+    if (collision.CompareTag("Enemy")) {
+      heroHealth--;
     }
+  }
 
   IEnumerator ReloadGun() {
     yield return new WaitForSeconds(1/fireRate);
