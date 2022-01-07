@@ -19,5 +19,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage() {
         enemyHealth--;
+        if (enemyHealth == 0) {
+            Destroy(gameObject);
+        }
     }
 }

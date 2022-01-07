@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour
     [SerializeField] float bulletSpeed = 10;
 
     private void Start() {
-        // No funciona
         Destroy(gameObject, 5);
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+  [SerializeField] int heroHealth = 5;
   [SerializeField] Vector3 moveDirection;
   [SerializeField] float moveSpeed = 4;
   [SerializeField] Transform aim;
@@ -38,7 +39,17 @@ public class Player : MonoBehaviour
       Instantiate(bulletPrefab, transform.position, shootRotation);
       StartCoroutine(ReloadGun());
     }
+
+    if (heroHealth == 0) {
+      Destroy(gameObject);
+    }
   }
+
+  private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.CompareTag("Enemy")) {
+          heroHealth--;
+        }
+    }
 
   IEnumerator ReloadGun() {
     yield return new WaitForSeconds(1/fireRate);
