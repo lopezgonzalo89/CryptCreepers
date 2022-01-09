@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
 
     private void Start() {
         playerTransform = FindObjectOfType<Player>().transform;
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        int idxSpawnPoint = Random.Range(0, spawnPoints.Length);
+        transform.position = spawnPoints[idxSpawnPoint].transform.position;
     }
     private void Update() {
         Vector2 direction = playerTransform.position - transform.position;
